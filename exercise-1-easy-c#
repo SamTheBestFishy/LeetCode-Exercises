@@ -1,0 +1,32 @@
+public class Solution {
+    public int[] TwoSum(int[] nums, int target) {
+        int numsLength = nums.Length;
+        bool foundTarget = false;
+
+        int zeroIndex = -1; // Initialize with a value that indicates no 0 found
+
+        for (int i = 0; i < numsLength; i++) 
+        {
+            if (nums[i] == target && target !=0) {
+                return new int[] { i };
+            }
+
+            if (target == 0 && nums[i] == 0) {
+                if (zeroIndex == -1) {
+                    zeroIndex = i;
+                } else {
+                    return new int[] { zeroIndex, i };
+                }
+            }
+
+            int find = target - nums[i];
+            int otherindex = Array.IndexOf(nums, find);
+
+            if (otherindex != -1 && otherindex != i) {
+                return new int[] { i, otherindex };
+            }
+        }
+
+        return new int[0]; // Return an empty array if no solution is found
+    }
+}
